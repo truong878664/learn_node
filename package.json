@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "main": "/src/index.js",
   "scripts": {
-    "start": "nodemon --inspect src/index.js"
+    "start": "nodemon --inspect src/index.js",
+    "scss": "node-sass src/resources/scss/ -o src/public/css/ -w"
   },
   "repository": {
     "type": "git",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "morgan": "^1.10.0",
+    "node-sass": "^8.0.0",
     "nodemon": "^2.0.20"
   }
 }
