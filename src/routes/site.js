@@ -3,7 +3,7 @@ import SiteController from "../app/controllers/SiteController.js";
 
 const route = express.Router();
 
-route.use("/search", SiteController.search);
-route.use("/", SiteController.home);
+route.get("/search", SiteController.search);
+route.get("/", SiteController.home);
 
 export default route;

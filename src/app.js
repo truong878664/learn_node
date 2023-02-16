@@ -1,16 +1,22 @@
 import express from "express";
 import morgan from "morgan";
 import { engine } from "express-handlebars";
-import * as url from "url";
 import route from "./routes/index.js";
+import db from "./config/database.js";
+import * as dotenv from "dotenv";
 
-const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+import { fileURLToPath } from "url";
+import { dirname } from "path";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+dotenv.config();
 
 const app = express();
 const port = 3000;
 
-
-
+db.connect();
 
 app.use(morgan("combined"));
 
@@ -20,11 +26,10 @@ app.use(express.json());
 
 app.engine(".hbs", engine({ extname: ".hbs" }));
 app.set("view engine", ".hbs");
+app.set("views", __dirname + "/resources/views");
 
-app.set("views", __dirname + "resources/views");
-
-route(app)
+route(app);
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
