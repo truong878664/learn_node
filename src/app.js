@@ -20,7 +20,7 @@ db.connect();
 
 app.use(morgan("combined"));
 
-app.use(express.static(__dirname + "public"));
+app.use(express.static(__dirname + "/public"));
 app.use(express.urlencoded());
 app.use(express.json());
 
@@ -29,6 +29,8 @@ app.set("view engine", ".hbs");
 app.set("views", __dirname + "/resources/views");
 
 route(app);
+
+
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
