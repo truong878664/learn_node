@@ -1,1 +1,38 @@
-<div class="">news page</div>
+<div class="mt-4">
+  <table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">title</th>
+        <th scope="col">description</th>
+        <th scope="col">link image</th>
+        <th scope="col">create at</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+
+      {{#each news}}
+        <tr>
+          <th scope="row">{{@index}}</th>
+          <td>{{this.title}}</td>
+          <td>{{this.description}}</td>
+          <td>{{this.image}}</td>
+          <td>{{this.createdAt}}</td>
+          <td>
+
+            <form method="POST" action="/news/{{this._id}}/delete?_method=DELETE">
+              <button class="btn btn-primary">Xóa</button>
+            </form>
+            <a href="" class="btn btn-primary">Sửa</a>
+          </td>
+        </tr>
+      {{else}}
+        <td colspan="6" class="text-center">
+          Bạn chưa đăng tin tức nào.
+          <a href="/news/upload" class="link-info">Đăng tin tức</a>
+        </td>
+      {{/each}}
+    </tbody>
+  </table>
+</div>
