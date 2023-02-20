@@ -11,7 +11,6 @@
       </tr>
     </thead>
     <tbody>
-
       {{#each news}}
         <tr>
           <th scope="row">{{@index}}</th>
@@ -20,10 +19,7 @@
           <td>{{this.image}}</td>
           <td>{{this.createdAt}}</td>
           <td>
-
-            <form method="POST" action="/news/{{this._id}}/delete?_method=DELETE">
-              <button class="btn btn-primary">Xóa</button>
-            </form>
+            <button class="btn btn-danger delete-new-btn" data-id="{{this._id}}">Xóa</button>
             <a href="" class="btn btn-primary">Sửa</a>
           </td>
         </tr>
@@ -33,6 +29,20 @@
           <a href="/news/upload" class="link-info">Đăng tin tức</a>
         </td>
       {{/each}}
+
     </tbody>
   </table>
+  <form method="POST" id="delete-new-form"></form>
 </div>
+
+<script>
+ window.onload = () => {
+    $$('.delete-new-btn').forEach(element => {
+      element.onclick = (e) => {
+        const id = e.target.getAttribute("data-id");
+        $('#delete-new-form').action = `/news/${id}/delete?_method=DELETE`;
+        $('#delete-new-form').submit();
+      } 
+    })
+  }
+</script>

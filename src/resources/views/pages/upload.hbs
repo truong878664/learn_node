@@ -1,14 +1,15 @@
 <div class="mt-4">
-    <a href="/news" class="font-bold text-xl link-primary underline">Tất cả tin tức</a>
-  <form action="/news/upload" method="post">
+  <a href="/news" class="font-bold text-xl link-primary underline">Tất cả tin tức</a>
+  <form action="/news/upload" method="post" class="mt-4">
     <div class="mb-3">
       <label for="" class="form-label">Title</label>
-      <input type="text" class="form-control" name="title" />
+      <input type="text" required class="form-control" name="title" />
 
     </div>
     <div class="mb-3">
       <label for="" class="form-label">Description</label>
-      <input type="text" class="form-control" name="description"/>
+      <textarea class="w-full border" name="description" id="" rows="10"></textarea>
+      </textarea>
     </div>
 
     <div class="mb-3">
@@ -16,6 +17,13 @@
       <input type="text" class="form-control" value="https://picsum.photos/200/300" name="image"/>
     </div>
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary bg-blue-600">Submit</button>
   </form>
+  <script>
+      const MAX = 200;
+      const MIN = 100;
+      const width = Math.floor(Math.random() * (MAX - MIN) + MIN);
+      const height = Math.floor(Math.random() * (MAX - MIN) + MIN);
+      document.querySelector('input[name=image]').value = `https://picsum.photos/${width}/${height}`;
+  </script>
 </div>

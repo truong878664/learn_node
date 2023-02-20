@@ -32,7 +32,6 @@ app.set("view engine", ".hbs");
 app.set("views", __dirname + "/resources/views");
 
 route(app);
-console.log(__dirname);
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);

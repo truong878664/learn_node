@@ -1,17 +1,42 @@
-<nav class="navbar bg-body-tertiary">
+<nav class="navbar bg-body-tertiary fixed top-0 left-0 right-0 z-10">
   <div class="container">
-    <a href="/" class="navbar-brand">Learn Node JS</a>
+    <a href="/" class="navbar-brand">
+      <img
+        class="h-[50px] active:scale-90"
+        src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Node.js_logo.svg/1200px-Node.js_logo.svg.png"
+        alt=""
+      />
+    </a>
     <div class="d-flex nav-item dropdown">
-      <img src="https://fullstack.edu.vn/static/media/f8-icon.18cd71cfcfa33566a22b.png" alt="" class="w-[30px] h-[30px] rounded-full mr-2">
-      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">Quoc_truong</a>
+      <img
+        src="https://www.notion.so/image/https%3A%2F%2Fpluralsight2.imgix.net%2Fpaths%2Fimages%2Fnodejs-45adbe594d.png?table=block&id=0bc561fb-375a-4c82-8512-0e3eff15be44&spaceId=b6bcc026-302a-4200-8e59-08f65905fdb9&width=250&userId=491dd653-5f18-4858-9b6b-9e31198299c0&cache=v2"
+        alt=""
+        class="w-[30px] h-[30px] rounded-full mr-2 border shadow-xl"
+      />
+      <a
+        class="nav-link dropdown-toggle"
+        href="#"
+        role="button"
+        data-bs-toggle="dropdown"
+        aria-expanded="false"
+      >Quoc_truong</a>
       <ul class="dropdown-menu">
-        <li><a class="dropdown-item" href="/news/upload">Tạo bản tin</a></li>
-        <li><a class="dropdown-item" href="/news">Danh sách bản tin</a></li>
         <li>
-          <hr class="dropdown-divider">
-          </li>
-        <li><a class="dropdown-item" href="#">Logout</a></li>
+          <a class="dropdown-item" href="/news/upload">Tạo bản tin</a>
+        </li>
+
+        <li>
+          <a class="dropdown-item" href="/news">Danh sách bản tin</a>
+        </li>
+
+        <li>
+          <hr class="dropdown-divider" />
+        </li>
+
+        <li>
+          <a class="dropdown-item" href="#">Logout</a>
+        </li>
       </ul>
-  </div>
+    </div>
   </div>
 </nav>
