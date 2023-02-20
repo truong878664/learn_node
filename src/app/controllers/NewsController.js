@@ -18,6 +18,12 @@ class NewsController {
       .then(() => res.redirect("/news"))
       .catch((err) => console.log(err));
   }
+
+  destroy(req, res, next) {
+    New.deleteOne({ _id: req.params.id })
+      .then(() => res.redirect("back"))
+      .catch(next);
+  }
 }
 
 export default new NewsController();
