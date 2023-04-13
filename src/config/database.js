@@ -1,15 +1,30 @@
 import mongoose from "mongoose";
+import mysql from "mysql2";
+import * as dotenv from "dotenv";
+dotenv.config();
 
-const connect = () => {
-  const DB_HOST = process.env.DB_HOST;
-  const DB_PORT = process.env.DB_PORT;
-  const DB_DATABASE = process.env.DB_DATABASE;
 
-  mongoose.set("strictQuery", false);
-  mongoose
-    .connect(`mongodb://${DB_HOST}:${DB_PORT}/${DB_DATABASE}`)
-    .then(() => console.log("DB CONNECTED!"))
-    .catch((err) => console.log("DB ERR!", err));
-};
+const DB_CONNECTION = process.env.DB_CONNECTION;
+const DB_HOST = process.env.DB_HOST;
+const DB_PORT = process.env.DB_PORT;
+const DB_DATABASE = process.env.DB_DATABASE;
 
-export default { connect };
+const DB_USERNAME = process.env.DB_USERNAME;
+const DB_PASSWORD = process.env.DB_PASSWORD;
+
+const connection = mysql.createConnection({
+  connectionLimit: 10,
+  host: 'localhost',
+  user: 'mvibot',
+  database: 'mvibot_database',
+  password: 'Mvibot@v1',
+});
+
+connection.connect();
+
+connection.query("SELECT * FROM `bookmark`", function (err, results) {
+  console.log(results);
+  console.log(err); // fields contains extra meta data about results, if available
+});
+
+export default { connection };
