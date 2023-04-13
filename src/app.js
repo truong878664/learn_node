@@ -1,35 +1,24 @@
 import express from "express";
-import morgan from "morgan";
-import { engine } from "express-handlebars";
 import * as dotenv from "dotenv";
-import methodOverride from "method-override";
+import route from "./routes/web.js";
+import mongodb from "./config/database.js";
 
-import route from "./routes/index.js";
-import db from "./config/database.js";
-
-import { fileURLToPath } from "url";
-import { dirname } from "path";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+import * as url from "url";
+import configViewEngine from "./config/configViewEngine.js";
+import configMiddleWare from "./config/configMiddleWare.js";
 
 dotenv.config();
 
+export const __filename = url.fileURLToPath(import.meta.url);
+export const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 8080;
 
-db.connect();
+mongodb.connect();
 
-app.use(morgan("combined"));
-app.use(methodOverride('_method'))
-
-app.use(express.static(__dirname + "/public"));
-app.use(express.urlencoded());
-app.use(express.json());
-
-app.engine(".hbs", engine({ extname: ".hbs" }));
-app.set("view engine", ".hbs");
-app.set("views", __dirname + "/resources/views");
+configMiddleWare(app)
+configViewEngine(app);
 
 route(app);
 

@@ -1,5 +1,5 @@
 import express from "express";
-import SiteController from "../app/controllers/SiteController.js";
+import SiteController from "../../app/controllers/SiteController.js";
 
 const route = express.Router();
 
