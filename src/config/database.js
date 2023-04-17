@@ -13,18 +13,17 @@ const DB_USERNAME = process.env.DB_USERNAME;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 
 const connection = mysql.createConnection({
-  connectionLimit: 10,
   host: 'localhost',
-  user: 'mvibot',
+  user: 'root',
   database: 'mvibot_database',
-  password: 'Mvibot@v1',
+  port: 3306,
 });
 
 connection.connect();
 
-connection.query("SELECT * FROM `bookmark`", function (err, results) {
+connection.query("SELECT * FROM bookmark", function (err, results) {
   console.log(results);
   console.log(err); // fields contains extra meta data about results, if available
 });
 
-export default { connection };
+ export default { connection };
