@@ -1,8 +1,5 @@
 import mongoose from "mongoose";
 import mysql from "mysql2";
-import * as dotenv from "dotenv";
-dotenv.config();
-
 
 const DB_CONNECTION = process.env.DB_CONNECTION;
 const DB_HOST = process.env.DB_HOST;
@@ -12,18 +9,19 @@ const DB_DATABASE = process.env.DB_DATABASE;
 const DB_USERNAME = process.env.DB_USERNAME;
 const DB_PASSWORD = process.env.DB_PASSWORD;
 
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  database: 'mvibot_database',
-  port: 3306,
+const pool = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  database: "mvibot_database",
+  socketPath: "/var/run/mysqld/mysqld.sock",
 });
+export const promisePool = pool.promise();
 
-connection.connect();
+const connectMongoose = () => {
+  mongoose
+    .connect(`mongodb://127.0.0.1:27017/${DB_DATABASE}`)
+    .then(() => console.log("Connected!"))
+    .catch((error) => console.log(error));
+};
 
-connection.query("SELECT * FROM bookmark", function (err, results) {
-  console.log(results);
-  console.log(err); // fields contains extra meta data about results, if available
-});
-
- export default { connection };
+export default { connectMongoose };

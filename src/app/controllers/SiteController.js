@@ -1,10 +1,11 @@
+import { promisePool } from "../../config/database.js";
 import New from "../models/New.js";
 
 class SiteController {
-  home(req, res) {
-    New.find()
-      .lean()
-      .then((news) => res.render("pages/home", { news }));
+  async home(req, res) {
+    const news = await New.find().lean();
+    const [rows, fields] = await promisePool.query("SELECT * FROM `bookmark`");
+    res.render("pages/home", { news, rows });
   }
 
   search(req, res) {

@@ -1,28 +1,36 @@
 import New from "../models/New.js";
 
 class NewsController {
-  index(req, res, next) {
-    New.find({})
-      .lean()
-      .then((news) => res.render("pages/news", { news }))
-      .catch((err) => next(err));
+  async index(req, res, next) {
+    try {
+      const news = await New.find({}).lean();
+      res.render("pages/news", { news });
+    } catch (error) {
+      next(err);
+    }
   }
 
   upload(req, res, next) {
     res.render("pages/upload");
   }
 
-  store(req, res, next) {
+  async store(req, res, next) {
     const data = req.body;
-    New.create(data)
-      .then(() => res.redirect("/news"))
-      .catch((err) => console.log(err));
+    try {
+      await New.create(data);
+      res.redirect("/news");
+    } catch (error) {
+      console.log(error);
+    }
   }
 
-  destroy(req, res, next) {
-    New.deleteOne({ _id: req.params.id })
-      .then(() => res.redirect("back"))
-      .catch(next);
+  async destroy(req, res, next) {
+    try {
+      await New.deleteOne({ _id: req.params.id });
+      res.redirect("back");
+    } catch (error) {
+      next(error);
+    }
   }
 }
 

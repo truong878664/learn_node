@@ -22,6 +22,14 @@
       </div>
     {{/each}}
 
+    {{#each rows}}
+     <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card" style="background-color: {{this.color}};">
+          {{this.link}}
+        </div>
+        </div>
+    {{/each}}
+
     <div contenteditable="true" class="text-center outline-none"></div>
   </div>
 </div>
