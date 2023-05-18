@@ -1,11 +1,13 @@
 import express from "express";
 import NewsController from "../../app/controllers/NewsController.js";
 
-const route = express.Router();
+const newsRoute = express.Router();
 
-route.post("/upload", NewsController.store);
-route.delete("/:id/delete", NewsController.destroy);
-route.get("/upload", NewsController.upload);
-route.get("/", NewsController.index);
+newsRoute.get("/edit/:id", NewsController.edit);
+newsRoute.put("/update/:id", NewsController.update);
+newsRoute.post("/upload", NewsController.store);
+newsRoute.delete("/:id/delete", NewsController.destroy);
+newsRoute.get("/upload", NewsController.upload);
+newsRoute.get("/", NewsController.index);
 
-export default route;
+export default newsRoute;

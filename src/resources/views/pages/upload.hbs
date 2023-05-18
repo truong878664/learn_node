@@ -9,7 +9,6 @@
     <div class="mb-3">
       <label for="" class="form-label">Description</label>
       <textarea class="w-full border form-control" name="description" id="" rows="10"></textarea>
-      </textarea>
     </div>
 
     <div class="mb-3">
@@ -20,8 +19,8 @@
     <button type="submit" class="btn btn-primary bg-blue-600">Submit</button>
   </form>
   <script>
-      const MAX = 200;
-      const MIN = 100;
+      const MAX = 1000;
+      const MIN = 800;
       const width = Math.floor(Math.random() * (MAX - MIN) + MIN);
       const height = Math.floor(Math.random() * (MAX - MIN) + MIN);
       document.querySelector('input[name=image]').value = `https://picsum.photos/${width}/${height}`;

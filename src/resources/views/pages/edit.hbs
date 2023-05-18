@@ -1,0 +1,28 @@
+<div class="mt-4">
+  <form action="/news/update/{{newItem._id}}?_method=PUT" method="post" class="mt-4">
+    <div class="mb-3">
+      <label for="" class="form-label">Title</label>
+      <input type="text" required class="form-control" name="title" value="{{newItem.title}}"/>
+    </div>
+    <div class="mb-3">
+      <label for="" class="form-label">Description</label>
+      <textarea
+        class="w-full border form-control"
+        name="description"
+        id=""
+        rows="10"
+        
+      >{{newItem.description}}</textarea>
+    </div>
+    <div class="mb-3">
+      <label for="" class="form-label">link image</label>
+      <input
+        type="text"
+        class="form-control"
+        value="{{newItem.image}}"
+        name="image"
+      />
+    </div>
+    <button type="submit" class="btn btn-primary bg-blue-600">Update</button>
+  </form>
+</div>

@@ -1,7 +1,29 @@
 <div class="mt-4">
   <div class="row">
+    {{! data from mongodb }}
     {{#each news}}
       <div class="col-sm-6 col-lg-4 mb-4">
+        <div class="card shadow-md cursor-pointer group/card ">
+          <img src="{{this.image}}" class="card-img-top h-[300px] object-cover group-hover/card:scale-105 transition-all group-hover/card:rounded-md duration-300" alt="..."/>
+          <div class="card-body">
+            <h5 class="card-title font-bold">{{this.title}}</h5>
+            <p class="card-text h-11 overflow-hidden ">{{this.description}}</p>
+            <a href="#" class="btn btn-primary mt-4">Xem chi tiết...</a>
+          </div>
+        </div>
+      </div>
+
+      {{! if data null }}
+    {{else}}
+      <div class="text-center">
+        <span>Hiện chưa có bản tin nào.</span>
+        <a href="/news/upload" class="underline text-blue-400">Tạo bản tin</a>
+      </div>
+    {{/each}}
+
+    {{! data from mysql }}
+    {{#each rows}}
+      <div class="col-sm-6 col-lg-4 mb-4 hidden">
         <div class="card">
           <img
             src="{{this.image}}"
@@ -15,21 +37,7 @@
           </div>
         </div>
       </div>
-    {{else}}
-      <div class="text-center">
-        <span>Hiện chưa có bản tin nào.</span>
-        <a href="/news/upload" class="underline text-blue-400">Tạo bản tin</a>
-      </div>
     {{/each}}
 
-    {{#each rows}}
-     <div class="col-sm-6 col-lg-4 mb-4">
-        <div class="card" style="background-color: {{this.color}};">
-          {{this.link}}
-        </div>
-        </div>
-    {{/each}}
-
-    <div contenteditable="true" class="text-center outline-none"></div>
   </div>
 </div>

@@ -6,6 +6,7 @@
         <th scope="col">title</th>
         <th scope="col">description</th>
         <th scope="col">link image</th>
+        <th scope="col">Image</th>
         <th scope="col">create at</th>
         <th scope="col">Action</th>
       </tr>
@@ -17,10 +18,21 @@
           <td>{{this.title}}</td>
           <td>{{this.description}}</td>
           <td>{{this.image}}</td>
-          <td>{{this.createdAt}}</td>
           <td>
-            <button class="btn btn-danger delete-new-btn" data-id="{{this._id}}">Xóa</button>
-            <a href="" class="btn btn-primary">Sửa</a>
+            <img src="{{this.image}}" class="w-20 h-20" />
+          </td>
+          <td>{{this.createdAt}}</td>
+          <td class="flex">
+            <button
+              type="button"
+              class="btn btn-danger mr-2"
+              data-bs-toggle="modal"
+              data-bs-target="#confirmDelete"
+              data-id="{{this._id}}"
+            >
+              Xóa
+            </button>
+            <a href="/news/edit/{{this._id}}" class="btn btn-primary">Sửa</a>
           </td>
         </tr>
       {{else}}
@@ -32,17 +44,60 @@
 
     </tbody>
   </table>
+
   <form method="POST" id="delete-new-form"></form>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="confirmDelete"
+    tabindex="-1"
+    aria-labelledby="confirmDeleteLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="confirmDeleteLabel">Notification</h1>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+          ></button>
+        </div>
+        <div class="modal-body">
+          Do you want to delete?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger delete-new-btn">submit</button>
+          <button
+            type="button"
+            class="btn btn-secondary"
+            data-bs-dismiss="modal"
+          >cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
 <script>
- window.onload = () => {
-    $$('.delete-new-btn').forEach(element => {
-      element.onclick = (e) => {
-        const id = e.target.getAttribute("data-id");
-        $('#delete-new-form').action = `/news/${id}/delete?_method=DELETE`;
-        $('#delete-new-form').submit();
-      } 
-    })
+  const confirmDeleteModal = document.getElementById('confirmDelete');
+  const deleteNewsForm = document.querySelector('#delete-new-form');
+  const allDeleteBtn = document.querySelector('.delete-new-btn')
+  let newsId;
+
+  if(confirmDeleteModal) {
+      confirmDeleteModal.addEventListener('show.bs.modal', e => {
+          newsId = e.relatedTarget.dataset.id
+      }
+    )
   }
+  allDeleteBtn.onclick = (e) => {
+    deleteNewsForm.action = `/news/${newsId}/delete?_method=DELETE`;
+    deleteNewsForm.submit();
+  }
+  
 </script>

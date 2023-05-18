@@ -21,7 +21,6 @@ configViewEngine(app);
 route(app);
 
 db.connectMongoose();
-// export const mysql = db.connectMysql();
 
 app.listen(port, () => {
   console.log(`App listening on port ${port}`);
