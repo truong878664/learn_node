@@ -20,6 +20,7 @@ configViewEngine(app);
 
 route(app);
 
+
 db.connectMongoose();
 
 app.listen(port, () => {
